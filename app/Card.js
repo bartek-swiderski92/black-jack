@@ -6,7 +6,7 @@ export class Card {
     mapTextToSIgn = {
         hearts: "&hearts;",
         spades: "&spades;",
-        diamonds: "&diamonds;",
+        diamonds: "&diams;",
         clubs: "&clubs;",
     }
 
