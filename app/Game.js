@@ -6,6 +6,17 @@ import { Message } from "./Message.js";
 const player = new Player('Player');
 const dealer = new Player('Dealer');
 const deck = new Deck();
+const table = new Table(
+    document.getElementById('playerCards'),
+    document.getElementById('dealerCards')
+);
+const messageBox = new Message(document.getElementById('message'));
+
+const hitButton = document.getElementById('hit');
+const stayButton = document.getElementById('stay');
+const dealerPoints = document.getElementById('dealerPoints');
+const playerPoints = document.getElementById('playerPoints');
+
 
 class Game {
     constructor({ player, dealer, table, deck, hitButton, stayButton, dealerPoints, playerPoints, messageBox }) {
@@ -13,7 +24,6 @@ class Game {
         this.dealer = dealer
         this.table = table;
         this.deck = deck;
-        this.deck.shuffle();
         this.hitButton = hitButton;
         this.stayButton = stayButton;
         this.dealerPoints = dealerPoints;
@@ -22,6 +32,7 @@ class Game {
     }
 
     run() {
+        this.deck.shuffle();
         this.hitButton.addEventListener('click', () => this.hitCard());
         this.stayButton.addEventListener('click', () => this.dealerPlays());
         this.dealCards();
@@ -71,7 +82,7 @@ class Game {
 
         this.hitButton.style.display = 'none';
         this.stayButton.style.display = 'none';
-
+        
 
         if (this.player.points < 21 && this.player.points == this.dealer.points) {
             this.messageBox.setText('Tie!').show();
@@ -106,23 +117,7 @@ class Game {
     }
 }
 
-const table = new Table(
-    document.getElementById('playerCards'),
-    document.getElementById('dealerCards')
-);
-const messageBox = new Message(document.getElementById('message'));
 
-const game = new Game({
-    player,
-    dealer,
-    table,
-    deck,
-    hitButton: document.getElementById('hit'),
-    stayButton: document.getElementById('stay'),
-    dealerPoints: document.getElementById('dealerPoints'),
-    playerPoints: document.getElementById('playerPoints'),
-    messageBox
-});
-
+const game = new Game({ player, dealer, table, deck, hitButton, stayButton, dealerPoints, playerPoints, messageBox });
 
 game.run();
