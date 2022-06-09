@@ -17,7 +17,6 @@ const stayButton = document.getElementById('stay');
 const dealerPoints = document.getElementById('dealerPoints');
 const playerPoints = document.getElementById('playerPoints');
 
-
 class Game {
     constructor({ player, dealer, table, deck, hitButton, stayButton, dealerPoints, playerPoints, messageBox }) {
         this.player = player;
@@ -29,7 +28,7 @@ class Game {
         this.dealerPoints = dealerPoints;
         this.playerPoints = playerPoints;
         this.messageBox = messageBox;
-    }
+    };
 
     run() {
         this.deck.shuffle();
@@ -47,7 +46,7 @@ class Game {
         if (this.player.points > 21) {
             this.endGame();
         };
-    }
+    };
 
     dealCards() {
         for (let n = 0; n < 2; n++) {
@@ -58,13 +57,11 @@ class Game {
             let card2 = this.deck.pickOne();
             this.dealer.hand.addCard(card2);
             this.table.showDealerCard(card2);
-        }
+        };
 
         this.playerPoints.innerHTML = this.player.calculatePoints();
         this.dealerPoints.innerHTML = this.dealer.calculatePoints();
-
-
-    }
+    };
 
     dealerPlays() {
         while (this.dealer.points <= this.player.points && this.dealer.points <= 21 && this.player.points <= 21) {
@@ -74,7 +71,7 @@ class Game {
             this.dealerPoints.innerHTML = this.dealer.calculatePoints()
         }
         this.endGame();
-    }
+    };
 
     endGame() {
         this.hitButton.removeEventListener('click', (event) => this.hitCard());
@@ -83,7 +80,6 @@ class Game {
         this.hitButton.style.display = 'none';
         this.stayButton.style.display = 'none';
         
-
         if (this.player.points < 21 && this.player.points == this.dealer.points) {
             this.messageBox.setText('Tie!').show();
 
@@ -113,9 +109,8 @@ class Game {
 
             return
         }
-
-    }
-}
+    };
+};
 
 
 const game = new Game({ player, dealer, table, deck, hitButton, stayButton, dealerPoints, playerPoints, messageBox });
