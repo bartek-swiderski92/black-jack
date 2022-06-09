@@ -21,6 +21,7 @@ class Game {
 
     run() {
         this.hitButton.addEventListener('click', () => this.hitCard());
+        this.stayButton.addEventListener('click', () => this.dealerPlays());
         this.dealCards();
     }
 
@@ -47,6 +48,14 @@ class Game {
         this.dealerPoints.innerHTML = this.dealer.calculatePoints();
     }
 
+    dealerPlays() {
+        while (this.dealer.points <= this.player.points && this.dealer.points <= 21 && this.player.points <= 21) {
+            const card = this.deck.pickOne();
+            this.dealer.hand.addCard(card);
+            this.table.showDealerCard(card);
+            this.dealerPoints.innerHTML = this.dealer.calculatePoints()
+        }
+    }
 
 }
 
