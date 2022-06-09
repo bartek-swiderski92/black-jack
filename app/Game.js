@@ -7,7 +7,7 @@ const dealer = new Player('Dealer');
 const deck = new Deck();
 
 class Game {
-    constructor({ player, dealer, table, deck, hitButton, stayButton }) {
+    constructor({ player, dealer, table, deck, hitButton, stayButton, dealerPoints, playerPoints }) {
         this.player = player;
         this.dealer = dealer
         this.table = table;
@@ -15,6 +15,8 @@ class Game {
         this.deck.shuffle();
         this.hitButton = hitButton;
         this.stayButton = stayButton;
+        this.dealerPoints = dealerPoints;
+        this.playerPoints = playerPoints;
     }
 
     run() {
@@ -26,6 +28,8 @@ class Game {
         const card = this.deck.pickOne();
         this.player.hand.addCard(card);
         this.table.showPlayerCard(card);
+        this.playerPoints.innerHTML = this.player.calculatePoints();
+
     }
 
     dealCards() {
@@ -38,7 +42,11 @@ class Game {
             this.dealer.hand.addCard(card2);
             this.table.showDealerCard(card2);
         }
+
+        this.playerPoints.innerHTML = this.player.calculatePoints();
+        this.dealerPoints.innerHTML = this.dealer.calculatePoints();
     }
+
 
 }
 
@@ -55,6 +63,8 @@ const game = new Game({
     deck,
     hitButton: document.getElementById('hit'),
     stayButton: document.getElementById('stay'),
+    dealerPoints: document.getElementById('dealerPoints'),
+    playerPoints: document.getElementById('playerPoints'),
 });
 
 
