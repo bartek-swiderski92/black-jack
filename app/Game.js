@@ -3,8 +3,20 @@ import { Table } from "./Table.js";
 import { Deck } from "./Deck.js";
 import { Message } from "./Message.js";
 
-const player = new Player('Player');
-const dealer = new Player('Dealer');
+
+export const enumValues = {
+    player: 'Player',
+    opponent: 'Dealer',
+    playerWins: 'Player Wins!',
+    opponentWins: 'Dealer Wins!',
+    tie: 'Tie!',
+    restartGameButton: 'Play Again!'
+}
+export const pointsToWin = 21;
+
+
+const player = new Player(enumValues.player);
+const dealer = new Player(enumValues.opponent);
 const deck = new Deck();
 const table = new Table(
     document.getElementById('playerCards'),
@@ -43,7 +55,7 @@ class Game {
         this.table.showPlayerCard(card);
         this.playerPoints.innerHTML = this.player.calculatePoints();
 
-        if (this.player.points > 21) {
+        if (this.player.points > pointsToWin) {
             this.endGame();
         };
     };
@@ -64,7 +76,7 @@ class Game {
     };
 
     dealerPlays() {
-        while (this.dealer.points <= this.player.points && this.dealer.points <= 21 && this.player.points <= 21) {
+        while (this.dealer.points <= this.player.points && this.dealer.points <= pointsToWin && this.player.points <= pointsToWin) {
             const card = this.deck.pickOne();
             this.dealer.hand.addCard(card);
             this.table.showDealerCard(card);
@@ -79,33 +91,33 @@ class Game {
 
         this.hitButton.style.display = 'none';
         this.stayButton.style.display = 'none';
-        
-        if (this.player.points < 21 && this.player.points == this.dealer.points) {
-            this.messageBox.setText('Tie!').show();
+
+        if (this.player.points < pointsToWin && this.player.points == this.dealer.points) {
+            this.messageBox.setText(enumValues.tie).show();
 
             return
         }
 
-        if (this.player.points > 21) {
-            this.messageBox.setText('Dealer wins!').show();
+        if (this.player.points > pointsToWin) {
+            this.messageBox.setText(enumValues.opponentWins).show();
 
             return
         }
 
-        if (this.dealer.points > 21) {
-            this.messageBox.setText('Player wins!').show();
+        if (this.dealer.points > pointsToWin) {
+            this.messageBox.setText(enumValues.playerWins).show();
 
             return
         }
 
-        if (this.player.points > 21) {
-            this.messageBox.setText('Player wins!').show();
+        if (this.player.points > pointsToWin) {
+            this.messageBox.setText(enumValues.playerWins).show();
 
             return
         }
 
         if (this.player.points < this.dealer.points) {
-            this.messageBox.setText('Dealer wins!').show();
+            this.messageBox.setText(enumValues.opponentWins).show();
 
             return
         }

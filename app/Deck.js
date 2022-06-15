@@ -4,10 +4,15 @@ export class Deck {
     cards = [];
 
     constructor() {
+        this.fillDeckWithCards()
+    }
+
+    fillDeckWithCards () {
         Types.forEach(type =>
             Weights.forEach(weight => this.cards.push(new Card(weight, type)))
         );
     }
+
     shuffle() {
         for (let i = this.cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * this.cards.length);

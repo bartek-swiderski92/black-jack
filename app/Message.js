@@ -1,10 +1,12 @@
+import { enumValues } from "./Game.js";
+
 export class Message {
     constructor(element) {
         this.element = element;
     }
 
     setText(message) {
-        this.element.innerHTML = message + `<button id="restart">Play Again!</button>`
+        this.element.innerHTML = message + `<button id="restart">${enumValues.restartGameButton}</button>`
         document.getElementById('restart').addEventListener('click', () => location.reload())
         return this;
     }
