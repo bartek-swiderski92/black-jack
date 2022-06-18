@@ -17,9 +17,9 @@ In order to win you have to gather more points than the delaer, but you cannot e
 Snips from the game:
 
 <div>
-<img height="300px" src="https://github.com/bartek-swiderski92/black-jack/blob/master/snips/new-game.png?raw=true"/>
-<img height="300px" src="https://github.com/bartek-swiderski92/black-jack/blob/master/snips/player-wins.png?raw=true"/>
-<img height="300px" src="https://github.com/bartek-swiderski92/black-jack/blob/master/snips/player-wins.png?raw=true"/>
+<img height="450px" src="https://github.com/bartek-swiderski92/black-jack/blob/master/snips/new-game.png?raw=true"/>
+<img height="450px" src="https://github.com/bartek-swiderski92/black-jack/blob/master/snips/player-wins.png?raw=true"/>
+<img height="450px" src="https://github.com/bartek-swiderski92/black-jack/blob/master/snips/player-wins.png?raw=true"/>
 
 </div>
 
